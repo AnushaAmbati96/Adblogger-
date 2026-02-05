@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adblogger – Watch Ads. Earn Rewards.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f2f4f7;
+      color: #222;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 64px;
+      background: #ffffff;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 700;
+      color: #ff6a00;
+    }
+
+    nav a {
+      margin-left: 24px;
+      text-decoration: none;
+      color: #555;
+      font-weight: 500;
+    }
+
+    .btn {
+      background: #ff6a00;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn.secondary {
+      background: transparent;
+      border: 1px solid #ff6a00;
+      color: #ff6a00;
+    }
+
+    .hero {
+      padding: 80px 64px;
+      max-width: 1200px;
+    }
+
+    .hero h1 {
+      font-size: 44px;
+      color: #111;
+      max-width: 700px;
+    }
+
+    .hero p {
+      margin: 20px 0 32px;
+      color: #555;
+      max-width: 600px;
+    }
+
+    .section {
+      padding: 60px 64px;
+      max-width: 1200px;
+    }
+
+    h2 { color: #111; margin-bottom: 16px; }
+
+    .card {
+      background: #fff;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    footer {
+      background: #e8ebf0;
+      padding: 40px 64px;
+      text-align: center;
+    }
+
+    /* Modal */
+    #authModal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+    }
+
+    #authModal .box {
+      background: #fff;
+      max-width: 400px;
+      margin: 10% auto;
+      padding: 30px;
+      border-radius: 10px;
+    }
+
+    input[type="email"], input[type="password"], input[type="range"] {
+      width: 100%;
+      padding: 12px;
+      margin: 12px 0;
+    }
+
+    @media (max-width: 768px) {
+      header, .hero, .section, footer { padding: 24px; }
+      .hero h1 { font-size: 34px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Adblogger</div>
+  <nav>
+    <a href="#how">How it Works</a>
+    <a href="#rewards">Rewards</a>
+    <a href="#" onclick="openModal()">Login</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Watch ads. Earn rewards. Your attention finally pays.</h1>
+  <p>Adblogger rewards users for engaging with advertisements — transparently, fairly, and on your terms.</p>
+  <a href="#rewards" class="btn">Estimate Earnings</a>
+</section>
+
+<section class="section" id="how">
+  <h2>How Adblogger Works</h2>
+  <p id="dailyQuote" style="font-style:italic; color:#666; margin-bottom:24px;"></p>
+
+  <div class="card" style="max-width:900px; margin:auto;">
+    <div style="position:relative; padding-top:56.25%;">
+      <iframe
+        src="https://www.youtube.com/embed/VIDEO_ID_HERE"
+        style="position:absolute; inset:0; width:100%; height:100%; border-radius:8px;"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="rewards">
+  <h2>Reward Estimator</h2>
+  <div class="card" style="max-width:600px;">
+    <label>Minutes per day: <strong><span id="mins">10</span></strong></label>
+    <input type="range" min="5" max="120" value="10" id="slider" />
+    <p style="color:#555; margin-top:16px;">
+      Daily: <strong>$<span id="daily">0.50</span></strong><br>
+      Monthly: <strong>$<span id="monthly">15.00</span></strong>
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Why Trust Adblogger?</h2>
+  <div class="grid">
+    <div class="card"><h4>No Spam</h4><p>We respect your time and privacy.</p></div>
+    <div class="card"><h4>Transparent Rewards</h4><p>Know your earnings before watching.</p></div>
+    <div class="card"><h4>You’re in Control</h4><p>Watch when you want. Stop anytime.</p></div>
+  </div>
+</section>
+
+<footer>
+  <p>Are you an advertiser?</p>
+  <p><a href="advertise.html" style="color:#ff6a00; font-weight:600;">Advertise here</a></p>
+</footer>
+
+<!-- Login Modal -->
+<div id="authModal">
+  <div class="box">
+    <h3>Login / Sign Up</h3>
+    <input type="email" placeholder="Email" />
+    <input type="password" placeholder="Password" />
+    <button class="btn" style="width:100%;">Continue</button>
+    <p style="font-size:13px; color:#777; margin-top:10px;">No spam. No hidden tracking.</p>
+    <button onclick="closeModal()" style="margin-top:10px; background:none; border:none; color:#ff6a00;">Close</button>
+  </div>
+</div>
+
+<script>
+  const quotes = [
+    "Your attention has value — get rewarded for it.",
+    "Ads don’t have to waste time. They can pay it back.",
+    "Earn while you watch. Simple. Transparent. Fair.",
+    "Attention is currency — Adblogger makes it fair.",
+    "Your time matters. We respect it."
+  ];
+  document.getElementById("dailyQuote").innerText = "“" + quotes[new Date().getDate() % quotes.length] + "”";
+
+  const slider = document.getElementById("slider");
+  const mins = document.getElementById("mins");
+  const daily = document.getElementById("daily");
+  const monthly = document.getElementById("monthly");
+  const rate = 0.05;
+
+  function updateRewards() {
+    const m = slider.value;
+    mins.innerText = m;
+    daily.innerText = (m * rate).toFixed(2);
+    monthly.innerText = (m * rate * 30).toFixed(2);
+  }
+  slider.addEventListener("input", updateRewards);
+  updateRewards();
+
+  function openModal() { document.getElementById("authModal").style.display = "block"; }
+  function closeModal() { document.getElementById("authModal").style.display = "none"; }
+</script>
+
+</body>
+</html>
